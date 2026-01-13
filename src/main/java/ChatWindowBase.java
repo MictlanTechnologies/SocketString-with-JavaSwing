@@ -104,7 +104,7 @@ public abstract class ChatWindowBase extends JFrame {
         titleLabel.setFont(TITLE_FONT);
         titleLabel.setForeground(theme.headerTextColor);
 
-        connectionLabel.setText("Connected to: localhost");
+        connectionLabel.setText(theme.subtitleText);
         connectionLabel.setFont(SUBTITLE_FONT);
         connectionLabel.setForeground(theme.headerSubtitleColor);
 
@@ -240,6 +240,7 @@ public abstract class ChatWindowBase extends JFrame {
         final boolean useDarkLaf;
         final String headerIcon;
         final int headerHeight;
+        final String subtitleText;
         final Color headerGradientStart;
         final Color headerGradientEnd;
         final Color headerTextColor;
@@ -266,6 +267,7 @@ public abstract class ChatWindowBase extends JFrame {
                       boolean useDarkLaf,
                       String headerIcon,
                       int headerHeight,
+                      String subtitleText,
                       Color headerGradientStart,
                       Color headerGradientEnd,
                       Color headerTextColor,
@@ -291,6 +293,7 @@ public abstract class ChatWindowBase extends JFrame {
             this.useDarkLaf = useDarkLaf;
             this.headerIcon = headerIcon;
             this.headerHeight = headerHeight;
+            this.subtitleText = subtitleText;
             this.headerGradientStart = headerGradientStart;
             this.headerGradientEnd = headerGradientEnd;
             this.headerTextColor = headerTextColor;

@@ -263,7 +263,7 @@ public abstract class ChatWindowBase extends JFrame {
         final Color bubbleExtraText;
         final String placeholderText;
 
-        private Theme(String windowTitle,
+        protected Theme(String windowTitle,
                       boolean useDarkLaf,
                       String headerIcon,
                       int headerHeight,
@@ -315,6 +315,59 @@ public abstract class ChatWindowBase extends JFrame {
             this.bubbleOtherText = bubbleOtherText;
             this.bubbleExtraText = bubbleExtraText;
             this.placeholderText = placeholderText;
+        }
+
+        protected Theme(String windowTitle,
+                        boolean useDarkLaf,
+                        String headerIcon,
+                        int headerHeight,
+                        Color headerGradientStart,
+                        Color headerGradientEnd,
+                        Color headerTextColor,
+                        Color headerSubtitleColor,
+                        Color statusBadgeBackground,
+                        Color statusBadgeForeground,
+                        Color backgroundColor,
+                        Color chatBackground,
+                        Color inputBackground,
+                        Color inputBorderColor,
+                        Color inputTextColor,
+                        Color placeholderColor,
+                        Color primaryButtonColor,
+                        Color primaryButtonHover,
+                        Color primaryButtonText,
+                        Color bubbleMeBackground,
+                        Color bubbleOtherBackground,
+                        Color bubbleMeText,
+                        Color bubbleOtherText,
+                        Color bubbleExtraText,
+                        String placeholderText) {
+            this(windowTitle,
+                    useDarkLaf,
+                    headerIcon,
+                    headerHeight,
+                    "Connected to: localhost",
+                    headerGradientStart,
+                    headerGradientEnd,
+                    headerTextColor,
+                    headerSubtitleColor,
+                    statusBadgeBackground,
+                    statusBadgeForeground,
+                    backgroundColor,
+                    chatBackground,
+                    inputBackground,
+                    inputBorderColor,
+                    inputTextColor,
+                    placeholderColor,
+                    primaryButtonColor,
+                    primaryButtonHover,
+                    primaryButtonText,
+                    bubbleMeBackground,
+                    bubbleOtherBackground,
+                    bubbleMeText,
+                    bubbleOtherText,
+                    bubbleExtraText,
+                    placeholderText);
         }
     }
 

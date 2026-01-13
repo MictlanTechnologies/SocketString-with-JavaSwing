@@ -201,15 +201,15 @@ public abstract class ChatWindowBase extends JFrame {
         if (text.isEmpty() || text.equals(theme.placeholderText)) {
             return;
         }
-        addMessage(true, "ME(" + theme.windowTitle + ") - " + text, "");
+        addMessage(true, "ME(" + theme.windowTitle + ") - " + text);
         inputField.setText(theme.placeholderText);
         inputField.setForeground(theme.placeholderColor);
     }
 
     protected abstract Theme getTheme();
 
-    public void addMessage(boolean fromMe, String mainText, String extraText) {
-        MessageBubblePanel bubble = new MessageBubblePanel(mainText, extraText, LocalTime.now(), fromMe, getTheme());
+    public void addMessage(boolean fromMe, String mainText) {
+        MessageBubblePanel bubble = new MessageBubblePanel(mainText, LocalTime.now(), fromMe, getTheme());
         JPanel wrapper = new JPanel(new FlowLayout(fromMe ? FlowLayout.LEFT : FlowLayout.RIGHT));
         wrapper.setOpaque(false);
         wrapper.setBorder(new EmptyBorder(8, 0, 8, 0));
@@ -221,11 +221,11 @@ public abstract class ChatWindowBase extends JFrame {
     }
 
     public void addChatLineLeft(String text) {
-        addMessage(true, text, "");
+        addMessage(true, text);
     }
 
     public void addChatLineRight(String text) {
-        addMessage(false, text, "");
+        addMessage(false, text);
     }
 
     private void scrollToBottom() {

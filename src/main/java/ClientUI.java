@@ -32,10 +32,6 @@ public class ClientUI extends ChatWindowBase {
 
     public ClientUI() {
         super(CLIENT_THEME);
-        addMessage(true, "ME(Client) - Hiii", "");
-        addMessage(true, "ME(Client) - im client", "");
-        addMessage(false, "Server(decrypt) - Hey", "(enc): SGVsbG8sIGNsaWVudCE=");
-        addMessage(false, "Server(decrypt) - im server", "(enc): U2VydmVyIHNheXMgaGk=");
     }
 
     @Override

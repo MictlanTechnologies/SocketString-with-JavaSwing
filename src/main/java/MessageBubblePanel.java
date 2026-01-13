@@ -11,14 +11,12 @@ import javax.swing.border.EmptyBorder;
 
 public class MessageBubblePanel extends JPanel {
     private final String mainText;
-    private final String extraText;
     private final LocalTime time;
     private final boolean fromMe;
     private final ChatWindowBase.Theme theme;
 
-    public MessageBubblePanel(String mainText, String extraText, LocalTime time, boolean fromMe, ChatWindowBase.Theme theme) {
+    public MessageBubblePanel(String mainText, LocalTime time, boolean fromMe, ChatWindowBase.Theme theme) {
         this.mainText = mainText;
-        this.extraText = extraText;
         this.time = time;
         this.fromMe = fromMe;
         this.theme = theme;
@@ -30,14 +28,6 @@ public class MessageBubblePanel extends JPanel {
         mainLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 16));
         mainLabel.setForeground(fromMe ? theme.bubbleMeText : theme.bubbleOtherText);
         add(mainLabel);
-
-        if (extraText != null && !extraText.isEmpty()) {
-            JLabel extraLabel = new JLabel(extraText);
-            extraLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
-            extraLabel.setForeground(theme.bubbleExtraText);
-            add(Box.createVerticalStrut(6));
-            add(extraLabel);
-        }
 
         JLabel timeLabel = new JLabel(time.format(ChatWindowBase.getTimeFormatter()));
         timeLabel.setFont(ChatWindowBase.TIMESTAMP_FONT);

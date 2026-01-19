@@ -23,7 +23,7 @@ public class ServerUI extends JFrame {
         super("Server");
         this.controller = controller;
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new Dimension(860, 600));
 
         setLayout(new BorderLayout());
@@ -71,6 +71,13 @@ public class ServerUI extends JFrame {
         // Acciones
         sendBtn.addActionListener(e -> send());
         input.addActionListener(e -> send()); // Enter
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent event) {
+                controller.shutdownAndSave();
+            }
+        });
 
         getContentPane().setBackground(Theme.WINDOW_BG_LIGHT);
     }

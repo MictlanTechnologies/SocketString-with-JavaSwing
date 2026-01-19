@@ -18,19 +18,21 @@ public class ClientUI extends JFrame {
     private final ChatPanel chatPanel;
     private final PlaceholderTextField input;
     private final JButton sendBtn;
+    private final int clientId;
 
-    public ClientUI(ChatController controller) {
-        super("Client");
+    public ClientUI(ChatController controller, int clientId, String title, String subtitle) {
+        super(title);
         this.controller = controller;
+        this.clientId = clientId;
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new Dimension(860, 600));
 
         setLayout(new BorderLayout());
 
         HeaderPanel header = new HeaderPanel(
-                "Client",
-                "Connected to: localhost",
+                title,
+                subtitle,
                 false,
                 Theme.CLIENT_HEADER_TOP,
                 Theme.CLIENT_HEADER_BOTTOM,
@@ -59,7 +61,7 @@ public class ClientUI extends JFrame {
         input = new PlaceholderTextField("Type a message…");
         input.setFont(Theme.FONT_CHAT);
         input.setPreferredSize(new Dimension(520, 44));
-        input.setBackground(new Color(255,255,255));
+        input.setBackground(new Color(255, 255, 255));
         input.setForeground(Theme.TEXT_DARK);
 
         sendBtn = Theme.makePrimaryButton("Send", Theme.CLIENT_ACCENT);
@@ -74,6 +76,13 @@ public class ClientUI extends JFrame {
         sendBtn.addActionListener(e -> send());
         input.addActionListener(e -> send()); // Enter
 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent event) {
+                controller.shutdownAndSave();
+            }
+        });
+
         getContentPane().setBackground(Theme.WINDOW_BG_DARK);
     }
 
@@ -81,7 +90,7 @@ public class ClientUI extends JFrame {
         String text = input.getRealText();
         if (text == null || text.trim().isEmpty()) return;
 
-        controller.sendFromClient(text.trim());
+        controller.sendFromClient(clientId, text.trim());
         input.clear();
     }
 

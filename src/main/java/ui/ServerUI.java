@@ -1,6 +1,6 @@
 package ui;
 
-import app.ChatController;
+import app.ServerChatController;
 import ui.components.ChatPanel;
 import ui.components.HeaderPanel;
 import ui.theme.Theme;
@@ -14,13 +14,13 @@ import java.awt.*;
  */
 public class ServerUI extends JFrame {
 
-    private final ChatController controller;
+    private final ServerChatController controller;
     private final ChatPanel chatPanel;
     private final PlaceholderTextField input;
     private final JButton sendBtn;
 
-    public ServerUI(ChatController controller) {
-        super("Server");
+    public ServerUI(ServerChatController controller) {
+        super("Servidor");
         this.controller = controller;
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -29,8 +29,8 @@ public class ServerUI extends JFrame {
         setLayout(new BorderLayout());
 
         HeaderPanel header = new HeaderPanel(
-                "Server",
-                "Now Connected to localhost",
+                "Servidor",
+                "Now Connected",
                 true,
                 Theme.SERVER_HEADER_TOP,
                 Theme.SERVER_HEADER_BOTTOM,

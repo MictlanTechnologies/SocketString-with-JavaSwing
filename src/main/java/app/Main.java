@@ -7,28 +7,29 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Punto de entrada: levanta 3 ventanas (Server y 2 Clients) lado a lado.
+ * Punto de entrada: levanta 3 ventanas (Servidor y 2 clientes) en la misma máquina.
  */
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // Look & Feel nativo para que no se vea "viejo"
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception ignored) {
             }
 
-            ChatController controller = new ChatController();
+            int port = 5050;
+            ServerChatController serverController = new ServerChatController(port, 2);
+            ServerUI serverUI = new ServerUI(serverController);
+            serverController.setServerUI(serverUI);
 
-            ServerUI serverUI = new ServerUI(controller);
-            ClientUI clientOneUI = new ClientUI(controller, 1, "Cliente 1", "Connected to: localhost");
-            ClientUI clientTwoUI = new ClientUI(controller, 2, "Cliente 2", "Connected to: localhost");
+            ClientChatController clientOneController = new ClientChatController("localhost", port, "Cliente 1");
+            ClientUI clientOneUI = new ClientUI(clientOneController, "Cliente 1", "Connected to: localhost:" + port);
+            clientOneController.setClientUI(clientOneUI);
 
-            controller.setServerUI(serverUI);
-            controller.setClientOneUI(clientOneUI);
-            controller.setClientTwoUI(clientTwoUI);
+            ClientChatController clientTwoController = new ClientChatController("localhost", port, "Cliente 2");
+            ClientUI clientTwoUI = new ClientUI(clientTwoController, "Cliente 2", "Connected to: localhost:" + port);
+            clientTwoController.setClientUI(clientTwoUI);
 
-            // Posicionarlas lado a lado
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             int width = 840;
             int height = 650;

@@ -1,6 +1,6 @@
 package ui;
 
-import app.ChatController;
+import app.ClientChatController;
 import ui.components.ChatPanel;
 import ui.components.HeaderPanel;
 import ui.theme.Theme;
@@ -14,16 +14,14 @@ import java.awt.*;
  */
 public class ClientUI extends JFrame {
 
-    private final ChatController controller;
+    private final ClientChatController controller;
     private final ChatPanel chatPanel;
     private final PlaceholderTextField input;
     private final JButton sendBtn;
-    private final int clientId;
 
-    public ClientUI(ChatController controller, int clientId, String title, String subtitle) {
+    public ClientUI(ClientChatController controller, String title, String subtitle) {
         super(title);
         this.controller = controller;
-        this.clientId = clientId;
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new Dimension(860, 600));
@@ -90,7 +88,7 @@ public class ClientUI extends JFrame {
         String text = input.getRealText();
         if (text == null || text.trim().isEmpty()) return;
 
-        controller.sendFromClient(clientId, text.trim());
+        controller.sendFromClient(text.trim());
         input.clear();
     }
 
